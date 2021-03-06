@@ -59,7 +59,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		empDetails.add(idField = new JTextField(20), "growx, pushx, wrap");
 		idField.setEditable(false);
 		
-
+// refactor - duplicated code
 		empDetails.add(new JLabel("PPS Number:"), "growx, pushx");
 		empDetails.add(ppsField = new JTextField(20), "growx, pushx, wrap");
 
@@ -119,10 +119,11 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 				departmentCombo.getSelectedItem().toString(), Double.parseDouble(salaryField.getText()), fullTime);
 		this.parent.currentEmployee = theEmployee;
 		this.parent.addRecord(theEmployee);
+		
 		this.parent.displayRecords(theEmployee);
 	}
 
-	// check for input in text fields
+	 //check for input in text fields
 	public boolean checkInput() {
 		boolean valid = true;
 		// if any of inputs are in wrong format, colour text field and display message
@@ -169,34 +170,36 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		return valid;
 	}// end checkInput
 
+	//refactor - make class for field and comboboxes and pass into
 	// set text field to white colour
-	public void setToWhite() {
-		ppsField.setBackground(Color.WHITE);
-		surnameField.setBackground(Color.WHITE);
-		firstNameField.setBackground(Color.WHITE);
-		salaryField.setBackground(Color.WHITE);
-		genderCombo.setBackground(Color.WHITE);
-		departmentCombo.setBackground(Color.WHITE);
-		fullTimeCombo.setBackground(Color.WHITE);
-	}// end setToWhite
+		public void setToWhite() {
+			ppsField.setBackground(Color.WHITE);
+			surnameField.setBackground(Color.WHITE);
+			firstNameField.setBackground(Color.WHITE);
+			salaryField.setBackground(Color.WHITE);
+			genderCombo.setBackground(Color.WHITE);
+			departmentCombo.setBackground(Color.WHITE);
+			fullTimeCombo.setBackground(Color.WHITE);
+		}// end setToWhite
 
 	// action performed
-	public void actionPerformed(ActionEvent e) {
-		// if chosen option save, save record to file
-		if (e.getSource() == save) {
-			// if inputs correct, save record
-			if (checkInput()) {
-				addRecord();// add record to file
-				dispose();// dispose dialog
-				this.parent.changesMade = true;
+		public void actionPerformed(ActionEvent e) {
+			// if chosen option save, save record to file
+			if (e.getSource() == save) {
+				// if inputs correct, save record
+				if (checkInput()) {//refactor - pass fields and combos into parent.checkIput
+					addRecord();// add record to file
+					dispose();// dispose dialog
+					this.parent.changesMade = true;
+				}// end if
+				// else display message and set text fields to white colour
+				else {
+					JOptionPane.showMessageDialog(null, "Wrong values or format! Please check!");
+					//refactor - parent.setToWhite
+					setToWhite();
+				}// end else
 			}// end if
-			// else display message and set text fields to white colour
-			else {
-				JOptionPane.showMessageDialog(null, "Wrong values or format! Please check!");
-				setToWhite();
-			}// end else
-		}// end if
-		else if (e.getSource() == cancel)
-			dispose();// dispose dialog
-	}// end actionPerformed
-}// end class AddRecordDialog
+			else if (e.getSource() == cancel)
+				dispose();// dispose dialog
+		}// end actionPerformed
+	}// end class AddRecordDialog

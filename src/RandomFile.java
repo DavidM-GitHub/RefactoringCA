@@ -269,11 +269,11 @@ public class RandomFile {
 	}// end isPpsExist
 
 	// Check if any record contains valid ID - greater than 0
-	public boolean isSomeoneToDisplay() {
+	public boolean isSomeoneToDisplay()  {
 		boolean someoneToDisplay = false;
 		long currentByte = 0;
 		RandomAccessEmployeeRecord record = new RandomAccessEmployeeRecord();
-
+		
 		try {// try to read from file and look for ID
 			// Start from start of file and loop until valid ID is found or search returned to start position
 			while (currentByte != input.length() && !someoneToDisplay) {
