@@ -1,7 +1,6 @@
 import javax.swing.JOptionPane;
 
 public class RecordHandler {
-
 	RandomFile application;
 	FileHandler fileHandler;
 	long currentByteStart;
@@ -10,13 +9,12 @@ public class RecordHandler {
 	
 	
 	
-	public RecordHandler(RandomFile application, FileHandler fileHandler, long currentByteStart,
-			EmployeeDetails employeeDetails, Employee currentEmployee) {
-		this.application = application;
+	public RecordHandler( FileHandler fileHandler, EmployeeDetails employeeDetails) {
+		this.application = employeeDetails.application;
 		this.fileHandler = fileHandler;
-		this.currentByteStart = currentByteStart;
+		this.currentByteStart = employeeDetails.currentByteStart;
 		this.employeeDetails = employeeDetails;
-		this.currentEmployee = currentEmployee;
+		this.currentEmployee = employeeDetails.currentEmployee;
 	}
 
 	// add Employee object to fail

@@ -59,7 +59,6 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		empDetails.add(idField = new JTextField(20), "growx, pushx, wrap");
 		idField.setEditable(false);
 		
-// refactor - duplicated code
 		empDetails.add(new JLabel("PPS Number:"), "growx, pushx");
 		empDetails.add(ppsField = new JTextField(20), "growx, pushx, wrap");
 
@@ -170,7 +169,6 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		return valid;
 	}// end checkInput
 
-	//refactor - make class for field and comboboxes and pass into
 	// set text field to white colour
 		public void setToWhite() {
 			ppsField.setBackground(Color.WHITE);
@@ -187,7 +185,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 			// if chosen option save, save record to file
 			if (e.getSource() == save) {
 				// if inputs correct, save record
-				if (checkInput()) {//refactor - pass fields and combos into parent.checkIput
+				if (checkInput()) {
 					addRecord();// add record to file
 					dispose();// dispose dialog
 					this.parent.changesMade = true;
@@ -195,7 +193,6 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 				// else display message and set text fields to white colour
 				else {
 					JOptionPane.showMessageDialog(null, "Wrong values or format! Please check!");
-					//refactor - parent.setToWhite
 					setToWhite();
 				}// end else
 			}// end if

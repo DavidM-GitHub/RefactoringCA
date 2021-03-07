@@ -10,13 +10,8 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FileHandler {
-
+	// display files in File Chooser only with extension .dat
 	private FileNameExtensionFilter datfilter = new FileNameExtensionFilter("dat files (*.dat)", "dat");
-	//file passed in
-	//String generatedFileName; passed in
-	//change passed in
-	//pass aplication in
-	//pass in ed object
 	File file;
 	String generatedFileName;
 	boolean change;
@@ -25,18 +20,14 @@ public class FileHandler {
 	Employee currentEmployee;
 	
 
-	public FileHandler(File file, String generatedFileName, boolean change, RandomFile application,
-			EmployeeDetails employeeDetails, Employee currentEmployee) {
-		this.file = file;
-		this.generatedFileName = generatedFileName;
-		this.change = change;
-		this.application = application;
+	public FileHandler(EmployeeDetails employeeDetails) {
+		this.file = employeeDetails.file;
+		this.generatedFileName = employeeDetails.generatedFileName;
+		this.change = employeeDetails.change;
+		this.application = employeeDetails.application;
 		this.employeeDetails = employeeDetails;
-		this.currentEmployee = currentEmployee;
+		this.currentEmployee = employeeDetails.currentEmployee;
 	}
-	
-	
-
 
 	public File getFile() {
 		return file;
@@ -115,7 +106,6 @@ public class FileHandler {
 						} // end if
 					} // end if
 				} // end if
-				//not displaying current refactor
 				employeeDetails.displayRecords(currentEmployee);
 				employeeDetails.setEnabled(false);
 			} // end else
